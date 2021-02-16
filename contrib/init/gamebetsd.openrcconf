@@ -1,0 +1,26 @@
+# /etc/conf.d/gamebetsd: config file for /etc/init.d/gamebetsd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/root/.gamebets/gamebets.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/root/.gamebets"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/gamebetsd.pid"
+
+# Where to write gamebetsd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/root/.gamebets/"
+
+# User and group to own gamebetsd process
+#BITCOIND_USER="gamebets"
+#BITCOIND_GROUP="gamebets"
+
+# Path to gamebetsd executable
+#BITCOIND_BIN="/root/gamebets/gamebetsd"
+
+# Nice value to run gamebetsd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

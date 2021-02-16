@@ -1,0 +1,23 @@
+[Unit]
+Description=Gamebets Core daemon
+After=network.target
+
+[Service]
+User=root
+Group=root
+
+Type=forking
+
+ExecStart=/root/gamebets/gamebetsd -daemon -conf=/root/.gamebets/gamebets.conf -datadir=/root/.gamebets
+
+ExecStop=-/root/gamebets/gamebets-cli -conf=/root/.gamebets/gamebets.conf -datadir=/root/.gamebets stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=10s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

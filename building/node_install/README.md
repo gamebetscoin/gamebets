@@ -1,0 +1,60 @@
+# Gamebets masternode setup
+Shell script to install a Gamebets Masternode on a Linux server running Ubuntu 16.04.
+Use at your own risk.
+***
+
+## VPS installation
+```
+wget -N https://raw.githubusercontent.com/GamebetsCoin/Gamebets/blob/master/node_install/gamebets_install.sh
+bash gamebets_install.sh
+```
+***
+
+## Desktop wallet setup
+
+After the Masternode is up and running, you will need to configure the desktop wallet. Follow these steps:
+1. Open the Gamebets Wallet.
+2. Go to RECEIVE and create a New Address: **MN1**
+3. Send **10000** GBC to **MN1**. You need to send all 10000 coins in one single transaction.
+4. Wait for 20 confirmations.
+5. Go to **Help -> "Debug Window - Console"**
+6. Type the following command: **masternode outputs**
+7. Go to  **Tools -> "Open Masternode Configuration File"**
+8. Add the following entry:
+```
+Alias Address Privkey TxHash TxIndex
+```
+* Alias: **MN1**
+* Address: **VPS_IP:PORT**
+* Privkey: **Masternode Private Key**
+* TxHash: **First value from Step 6**
+* TxIndex:  **Second value from Step 6**
+9. Save and close the file.
+10. Go to **Masternode Tab**. If you tab is not shown, please enable it from: **Settings - Options - Wallet - Show Masternodes Tab**
+11. Click **Update status** to see your node. If it is not shown, close the wallet and start it again. Make sure the wallet is unlocked.
+12. Select your MN and click **Start Alias** to start it.
+13. Alternatively, open **Debug Console** and type:
+```
+startmasternode alias 0 MN1
+```
+14. Login to your VPS and check your masternode status by running the following command to confirm your MN is running:
+```
+gamebets-cli masternode status
+```
+***
+
+## Usage:
+```
+gamebets-cli masternode status #To check your MN status
+gamebets-cli getinfo #To get general info such as Gamebets version and current block number
+gamebets-cli mnsync status #To check if your MN is synced.
+```
+If you want to check/start/stop **Gamebets**, run one of the following commands as **root**:
+
+```
+systemctl status gamebets #To check if the Gamebets service is running
+systemctl start gamebets #To start the Gamebets service
+systemctl stop gamebets #To stop gamebets service
+systemctl is-enabled gamebets #To check if Gamebets service is enabled on boot
+```
+***
